@@ -1,6 +1,7 @@
 import {Breadcrumb} from "@chakra-ui/react"
 import {LuCar, LuHouse} from "react-icons/lu"
 import {useLocation} from "react-router-dom";
+import {Fragment} from "react";
 
 export function AppBreadCrumb() {
 
@@ -19,7 +20,7 @@ export function AppBreadCrumb() {
             {pathNames.map((value, index) => {
                 const path = `/${pathNames.slice(0, index + 1).join("/")}`;
                 const isLast = index === pathNames.length - 1; // Check if this is the last breadcrumb
-                return <>
+                return <Fragment key={index}>
                     <Breadcrumb.Item key={index + "-" + value}>
                         {isLast ? <Breadcrumb.CurrentLink key={index + "-current-link"}>
                                 {value}
@@ -32,7 +33,7 @@ export function AppBreadCrumb() {
 
                     </Breadcrumb.Item>
                     {!isLast && <Breadcrumb.Separator key={value + "-separator"}/>}
-                </>
+                </Fragment>
             })}
 
         </Breadcrumb.List>}
